@@ -28,10 +28,6 @@ workflows:
     description: Praise contributors based on their contributions
     always-run: true
     if:
-      # Praise contributors on their first pull request.
-      - rule: 'true'
-        extra-actions:
-          - $fail("failing reviewpad fail")
       # Praise contributors on their 100th pull request.
       - rule: $pullRequestCountBy($author()) == 100
         extra-actions:
