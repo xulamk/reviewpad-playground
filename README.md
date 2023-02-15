@@ -1,3 +1,3 @@
 # reviewpad-playground
 
-adding readme
+reviewpad playground readme
