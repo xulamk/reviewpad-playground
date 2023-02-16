@@ -16,4 +16,4 @@ workflows:
       # Fail Reviewpad check on pull requests that modify any LICENSE;
       - rule: $hasFilePattern("**/.gitignore*")
         extra-actions:
-          - $assignCodeAuthorReviewers(2, [], 3)
+          - $assignCodeAuthorReviewers()
