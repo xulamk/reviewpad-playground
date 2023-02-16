@@ -4,16 +4,13 @@ workflows:
   - name: delete-head-branch
     always-run: true
     if:
-      # Fail Reviewpad check on pull requests that modify any LICENSE;
       - rule: $isMerged()
         extra-actions:
           - $deleteHeadBranch()
           
   - name: assign-code-author
-    description: Validate that licenses are not modified
     always-run: true
     if:
-      # Fail Reviewpad check on pull requests that modify any LICENSE;
       - rule: $hasFilePattern("**/.gitignore*")
         extra-actions:
           - $assignCodeAuthorReviewers()
