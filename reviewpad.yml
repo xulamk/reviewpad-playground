@@ -4,7 +4,7 @@ workflows:
   - name: rebase
     always-run: true
     if:
-      - rule: '!$isUpdatedWithBaseBranch() && $selectFromContext("rebaseable")'
+      - rule: '!$isUpdatedWithBaseBranch() && $toBool($selectFromContext("rebaseable"))'
         extra-actions:
           - $rebase()
           
