@@ -11,13 +11,13 @@ workflows:
   - name: have-all-checks-run-completed-readme
     always-run: true
     if:
-      - rule: $haveAllChecksRunCompleted([], "success", ["skipped"]) && $hasFilePattern("README.md")
+      - rule: $hasFilePattern("README.md") && $haveAllChecksRunCompleted([], "success", ["skipped"])
         extra-actions:
           - $addLabel("success")
           
   - name: have-all-checks-run-completed-test
     always-run: true
     if:
-      - rule: $haveAllChecksRunCompleted([], "success", []) && $hasFilePattern("test")
+      - rule: $hasFilePattern("test") && $haveAllChecksRunCompleted([], "success", [])
         extra-actions:
           - $addLabel("success-2")
