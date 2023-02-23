@@ -8,9 +8,16 @@ workflows:
         extra-actions:
           - $rebase()
           
-  - name: have-all-checks-run-completed
+  - name: have-all-checks-run-completed-readme
     always-run: true
     if:
-      - rule: $haveAllChecksRunCompleted([], "success", ["skipped"])
+      - rule: $haveAllChecksRunCompleted([], "success", ["skipped"]) && $hasFilePattern("README.md")
+        extra-actions:
+          - $comment("all check runs have completed successfully")
+          
+  - name: have-all-checks-run-completed-test
+    always-run: true
+    if:
+      - rule: $haveAllChecksRunCompleted([], "success", ["skipped"]) && $hasFilePattern("test")
         extra-actions:
           - $comment("all check runs have completed successfully")
