@@ -1,16 +1,16 @@
 api-version: reviewpad.com/v3.x
 
 workflows:
-  - name: delete-head-branch
+  - name: rebase
     always-run: true
     if:
-      - rule: $isMerged()
+      - rule: '!$isUpdatedWithBaseBranch() && $selectFromContext("rebaseable")'
         extra-actions:
-          - $deleteHeadBranch()
+          - $rebase()
           
-  - name: assign-code-author
+  - name: have-all-checks-run-completed
     always-run: true
     if:
-      - rule: $hasFilePattern("**/.gitignore*")
+      - rule: $haveAllChecksRunCompleted([], "success", ["skipped"])
         extra-actions:
-          - $assignCodeAuthorReviewers()
+          - $comment("all check runs have completed successfully")
