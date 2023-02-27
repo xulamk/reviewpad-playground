@@ -6,3 +6,4 @@ another test
 test
 test
 test
+test
