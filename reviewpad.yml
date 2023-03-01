@@ -1,23 +1,9 @@
 api-version: reviewpad.com/v3.x
 
 workflows:
-  - name: rebase
+  - name: remove-from-project
     always-run: true
     if:
-      - rule: '!$isUpdatedWithBaseBranch() && $toBool($selectFromContext("rebaseable"))'
-        extra-actions:
-          - $rebase()
-          
-  - name: have-all-checks-run-completed-readme
-    always-run: true
-    if:
-      - rule: $hasFilePattern("README.md") && $haveAllChecksRunCompleted([], "success", ["skipped"])
-        extra-actions:
-          - $addLabel("success")
-          
-  - name: have-all-checks-run-completed-test
-    always-run: true
-    if:
-      - rule: $hasFilePattern("test") && $haveAllChecksRunCompleted([], "success", [])
-        extra-actions:
-          - $addLabel("success-2")
+      - rule: 'true'
+    then:
+      - $removeFromProject("demo")
