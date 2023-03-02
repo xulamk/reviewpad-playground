@@ -1,3 +1,3 @@
 # reviewpad-playground
 
-testing remove from project
+testing remove from project built-in action
