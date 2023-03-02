@@ -1,9 +1,15 @@
 api-version: reviewpad.com/v3.x
 
 workflows:
-  - name: remove-from-project
+  - name: add-to-project
     always-run: true
     if:
       - rule: 'true'
+    then:
+      - $addToProject("demo", "Todo")
+  - name: remove-from-project
+    always-run: true
+    if:
+      - rule: $hasLabel("remove")
     then:
       - $removeFromProject("demo")
