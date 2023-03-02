@@ -10,6 +10,6 @@ workflows:
   - name: remove-from-project
     always-run: true
     if:
-      - rule: $hasLabel("remove")
+      - rule: $isElementOf("remove", $labels())
     then:
       - $removeFromProject("demo")
