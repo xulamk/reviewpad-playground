@@ -1,15 +1,9 @@
 api-version: reviewpad.com/v3.x
 
 workflows:
-  - name: add-to-project
+  - name: demo-has-any-check-run-completed
     always-run: true
     if:
-      - rule: 'true'
+      - rule: $hasAnyCheckRunCompleted([], ["skipped", "failure"])
     then:
-      - $addToProject("demo", "Todo")
-  - name: remove-from-project
-    always-run: true
-    if:
-      - rule: $isElementOf("remove", $labels())
-    then:
-      - $removeFromProject("demo")
+      - $review("REQUEST_CHANGES", "Pull request checks shouldn't fail or be skipped.")
