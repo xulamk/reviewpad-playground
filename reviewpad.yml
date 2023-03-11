@@ -1,9 +1,0 @@
-api-version: reviewpad.com/v3.x
-
-workflows:
-  - name: demo-has-any-check-run-completed
-    always-run: true
-    if:
-      - rule: $hasAnyCheckRunCompleted([], ["skipped", "failure"])
-    then:
-      - $review("REQUEST_CHANGES", "Pull request checks shouldn't fail or be skipped.")
